@@ -1,6 +1,6 @@
 package dk.monkeyboy.WelcomeMe;
 
-import org.bukkit.event.player.PlayerEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerListener;
 
 public class WelcomeMePlayerListener extends PlayerListener{
@@ -11,7 +11,7 @@ public class WelcomeMePlayerListener extends PlayerListener{
 		plugin = ref;
 	}
 	
-	public void onPlayerJoin(PlayerEvent event)
+	public void onPlayerJoin(PlayerJoinEvent event)
 	{
 		plugin.DisplayMessage(event.getPlayer());
 	}
