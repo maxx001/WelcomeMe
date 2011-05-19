@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -15,14 +16,16 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class WelcomeMe extends JavaPlugin {	
 	public ArrayList<String> UnformattedMessage = new ArrayList<String>();
+	Logger log = Logger.getLogger("Minecraft");
 	
 	public void onDisable() { };
 	
 	public void onEnable()
 	{
 		PluginDescriptionFile pdfFile = this.getDescription();
-        System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
-        
+        //System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
+		log.info(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");
+		
         PluginManager pm = getServer().getPluginManager();
         
         pm.registerEvent(Event.Type.PLAYER_JOIN, new WelcomeMePlayerListener(this), Event.Priority.Normal, this);
