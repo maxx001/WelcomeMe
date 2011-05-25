@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -79,6 +80,7 @@ public class WelcomeMe extends JavaPlugin {
 			s = s.replaceAll("%op", numplayers);
 			s = s.replaceAll("%mp", maxplayers);
 			s = s.replaceAll("%pl", playersString);
+			s = s.replaceAll("%np", player.getDisplayName());
 			player.sendMessage(s);
 		}
 	}
@@ -88,6 +90,16 @@ public class WelcomeMe extends JavaPlugin {
 		String playersString = "";
 		String maxplayers = Integer.toString(getServer().getMaxPlayers());
 		String numplayers = Integer.toString(getServer().getOnlinePlayers().length);
+		String np = "";
+		
+		if(sender instanceof Player){
+			Player player = (Player)sender;
+			np = player.getDisplayName();
+		} else if(sender instanceof ConsoleCommandSender){
+			np = "Console";
+		} else {
+			np = "Unknown";
+		}
 		
 		for(Player p : getServer().getOnlinePlayers())
 		{
@@ -103,6 +115,7 @@ public class WelcomeMe extends JavaPlugin {
 			s = s.replaceAll("%op", numplayers);
 			s = s.replaceAll("%mp", maxplayers);
 			s = s.replaceAll("%pl", playersString);
+			s = s.replaceAll("%np", np);
 			sender.sendMessage(s);
 		}
 	}
