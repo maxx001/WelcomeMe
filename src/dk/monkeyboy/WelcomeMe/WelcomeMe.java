@@ -39,6 +39,13 @@ public class WelcomeMe extends JavaPlugin {
 		ReadMessageFromFile();
 	}
 	
+	// Credit to Bone008 @http://forums.bukkit.org/threads/parse-for-color-codes.25965/
+	public String Colorize(String s)
+	{
+		if(s == null) return null;
+		return s.replaceAll("&([0-9a-f])", "\u00A7$1");
+	}
+	
 	public void ReadMessageFromFile()
 	{
 		BufferedReader b = null;
@@ -50,7 +57,7 @@ public class WelcomeMe extends JavaPlugin {
 			
 			while((str = b.readLine()) != null)
 			{
-				UnformattedMessage.add(str);
+				UnformattedMessage.add(Colorize(str));
 			}
 			b.close();
 		} catch (FileNotFoundException e) {
